@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Darani Kettimuthu — IT Professional</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0e1a;
+    --bg2: #111827;
+    --bg3: #1a2236;
+    --accent: #4f8ef7;
+    --accent2: #38d9a9;
+    --text: #f0f4ff;
+    --text2: #8899bb;
+    --text3: #4a5a7a;
+    --border: rgba(79,142,247,0.15);
+    --radius: 12px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(79,142,247,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(79,142,247,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* glow orbs */
+  body::after {
+    content: '';
+    position: fixed;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(79,142,247,0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: rgba(10,14,26,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    padding: 16px 0;
+  }
+
+  nav .inner {
+    max-width: 1100px; margin: 0 auto; padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 18px;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.5px;
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: var(--text2); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 0 80px;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(79,142,247,0.1);
+    border: 1px solid rgba(79,142,247,0.25);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 13px; color: var(--accent);
+    margin-bottom: 24px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent2);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(36px, 5vw, 58px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    margin-bottom: 20px;
+  }
+
+  h1 .accent { color: var(--accent); }
+  h1 .accent2 { color: var(--accent2); }
+
+  .hero-sub {
+    font-size: 18px;
+    color: var(--text2);
+    max-width: 500px;
+    margin-bottom: 36px;
+    line-height: 1.65;
+  }
+
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    padding: 13px 28px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    padding: 13px 28px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-stats {
+    display: flex; gap: 32px; margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px; font-weight: 800;
+    color: var(--text);
+  }
+
+  .stat-label { font-size: 13px; color: var(--text3); margin-top: 2px; }
+
+  /* CHAT WIDGET */
+  .chat-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 0 60px rgba(79,142,247,0.08);
+  }
+
+  .chat-header {
+    padding: 14px 16px;
+    background: var(--bg3);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .chat-avatar {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 12px; font-weight: 700; color: #fff;
+  }
+
+  .chat-hname { font-size: 14px; font-weight: 500; }
+  .chat-hsub { font-size: 11px; color: var(--text3); }
+  .online-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent2); margin-left: auto; }
+
+  #chat-messages {
+    height: 320px;
+    overflow-y: auto;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--bg3) transparent;
+  }
+
+  .msg {
+    max-width: 85%;
+    padding: 10px 13px;
+    border-radius: 10px;
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+
+  .msg.user {
+    align-self: flex-end;
+    background: var(--accent);
+    color: #fff;
+    border-bottom-right-radius: 3px;
+  }
+
+  .msg.bot {
+    align-self: flex-start;
+    background: var(--bg3);
+    color: var(--text);
+    border-bottom-left-radius: 3px;
+    border: 1px solid var(--border);
+  }
+
+  .msg.thinking { color: var(--text3); font-style: italic; }
+
+  .quick-chips {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    padding: 0 14px 10px;
+  }
+
+  .chip {
+    padding: 5px 11px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    font-size: 11.5px;
+    cursor: pointer;
+    color: var(--text2);
+    background: var(--bg3);
+    transition: all 0.2s;
+  }
+  .chip:hover { border-color: var(--accent); color: var(--accent); }
+
+  .chat-input-row {
+    display: flex; gap: 8px;
+    padding: 12px;
+    border-top: 1px solid var(--border);
+  }
+
+  #chat-input {
+    flex: 1;
+    padding: 9px 13px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 13px;
+    outline: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  #chat-input:focus { border-color: var(--accent); }
+
+  #send-btn {
+    padding: 9px 16px;
+    border-radius: 8px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: opacity 0.2s;
+  }
+
+  #send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  #send-btn:hover:not(:disabled) { opacity: 0.85; }
+
+  /* SECTIONS */
+  section { padding: 80px 0; position: relative; z-index: 1; }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .section-sub { color: var(--text2); font-size: 17px; max-width: 540px; margin-bottom: 48px; }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .about-text p { color: var(--text2); margin-bottom: 16px; }
+
+  .about-facts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .fact-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+  }
+
+  .fact-icon { font-size: 20px; margin-bottom: 8px; }
+  .fact-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+  .fact-val { font-size: 12px; color: var(--text3); }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+  }
+
+  .skill-pill {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+  }
+
+  .skill-pill:hover { border-color: var(--accent); }
+  .skill-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent2); flex-shrink: 0; }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .project-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .project-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+  .project-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+
+  .tag-ai { background: rgba(56,217,169,0.12); color: var(--accent2); }
+  .tag-web { background: rgba(79,142,247,0.12); color: var(--accent); }
+  .tag-security { background: rgba(255,100,100,0.12); color: #ff8080; }
+  .tag-research { background: rgba(200,150,255,0.12); color: #c88fff; }
+
+  .project-title { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .project-desc { font-size: 13.5px; color: var(--text2); line-height: 1.6; margin-bottom: 16px; }
+
+  .project-link {
+    color: var(--accent);
+    font-size: 13px;
+    text-decoration: none;
+    display: flex; align-items: center; gap: 4px;
+  }
+
+  .project-link:hover { text-decoration: underline; }
+
+  /* CERTS */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+  }
+
+  .cert-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    display: flex; align-items: flex-start; gap: 12px;
+  }
+
+  .cert-icon {
+    width: 36px; height: 36px; flex-shrink: 0;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+
+  .cert-name { font-size: 13px; font-weight: 500; line-height: 1.4; }
+  .cert-date { font-size: 11px; color: var(--text3); margin-top: 3px; }
+
+  /* CONTACT */
+  .contact-box {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 60px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-box::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: 50%; transform: translateX(-50%);
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(79,142,247,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .contact-box h2 { margin-bottom: 14px; }
+  .contact-box p { color: var(--text2); font-size: 17px; margin-bottom: 36px; }
+
+  .contact-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+  .contact-link {
+    display: flex; align-items: center; gap: 8px;
+    padding: 12px 22px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s;
+    background: var(--bg3);
+  }
+
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 0;
+    text-align: center;
+    color: var(--text3);
+    font-size: 13px;
+    position: relative; z-index: 1;
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    width: 100%; height: 1px;
+    background: var(--border);
+    margin: 0;
+  }
+
+  /* FADE IN */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .chat-card { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    h1 { font-size: 36px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="inner">
+    <a class="nav-logo" href="#"><span>D</span>arani K.</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank">GitHub</a></li>
+    </ul>
+    <a class="nav-cta" href="mailto:daranikettimuthu20@gmail.com">Hire Me</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-tag">Available for IT Roles in NC</div>
+        <h1>Hi, I'm <span class="accent">Darani</span><br/>IT Professional<br/>&amp; <span class="accent2">AI Builder</span></h1>
+        <p class="hero-sub">Cybersecurity certified, AI-focused developer and educator based in Apex, NC. I turn real-world problems into working tech solutions.</p>
+        <div class="hero-btns">
+          <a class="btn-primary" href="#projects">View My Work</a>
+          <a class="btn-outline" href="#contact">Get In Touch</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-num">3+</div>
+            <div class="stat-label">Years teaching</div>
+          </div>
+          <div>
+            <div class="stat-num">20+</div>
+            <div class="stat-label">Certifications</div>
+          </div>
+          <div>
+            <div class="stat-num">10+</div>
+            <div class="stat-label">Books published</div>
+          </div>
+          <div>
+            <div class="stat-num">5+</div>
+            <div class="stat-label">Projects built</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI CHAT WIDGET -->
+      <div class="chat-card">
+        <div class="chat-header">
+          <div class="chat-avatar">DK</div>
+          <div>
+            <div class="chat-hname">Darani's AI Agent</div>
+            <div class="chat-hsub">Ask me anything about Darani</div>
+          </div>
+          <div class="online-dot"></div>
+        </div>
+        <div id="chat-messages">
+          <div class="msg bot">Hi! I'm Darani's AI agent. Ask me anything about her skills, experience, or projects!</div>
+        </div>
+        <div class="quick-chips" id="chips">
+          <span class="chip" onclick="sendChip(this)">What are her skills?</span>
+          <span class="chip" onclick="sendChip(this)">Her projects?</span>
+          <span class="chip" onclick="sendChip(this)">Certifications?</span>
+          <span class="chip" onclick="sendChip(this)">Good for cybersecurity?</span>
+        </div>
+        <div class="chat-input-row">
+          <input id="chat-input" type="text" placeholder="Ask a question..." onkeydown="if(event.key==='Enter') sendMsg()"/>
+          <button id="send-btn" onclick="sendMsg()">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container fade-in">
+    <div class="section-label">About Me</div>
+    <h2>From Educator to<br/>IT Professional</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I spent 3 years as a Placement Trainer at Nandha Engineering College, India, teaching Python, Java, C++, SQL, and guiding hundreds of students through technical interviews and coding challenges.</p>
+        <p>After completing my MS in MSIT at University of The People (2026) and earning certifications in Google Cybersecurity, AWS AI, and Python, I'm now bringing that teaching precision into building real IT solutions.</p>
+        <p>I'm a published children's book author (10+ books on Amazon), IEEE volunteer, conference judge, and grant reviewer — which shows I bring communication, creativity, and community thinking to every team I join.</p>
+        <p>Currently based in Apex, NC — open to cybersecurity analyst, junior developer, AI/ML, or cloud support roles. Hybrid or remote preferred.</p>
+      </div>
+      <div class="about-facts">
+        <div class="fact-card">
+          <div class="fact-icon">🎓</div>
+          <div class="fact-title">MS MSIT</div>
+          <div class="fact-val">University of The People, 2026</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-icon">📍</div>
+          <div class="fact-title">Location</div>
+          <div class="fact-val">Apex, NC, USA 27539</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-icon">🔐</div>
+          <div class="fact-title">Cybersecurity</div>
+          <div class="fact-val">Google Certified, April 2026</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-icon">🤖</div>
+          <div class="fact-title">AI Ready</div>
+          <div class="fact-val">AWS AI + Claude + DeepLearning.AI</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-icon">📚</div>
+          <div class="fact-title">IEEE Volunteer</div>
+          <div class="fact-val">Reviewer & Conference Judge</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-icon">✍️</div>
+          <div class="fact-title">Published Author</div>
+          <div class="fact-val">10+ books on Amazon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container fade-in">
+    <div class="section-label">Skills</div>
+    <h2>Technical Toolkit</h2>
+    <p class="section-sub">Languages, tools, and platforms I work with.</p>
+    <div class="skills-grid">
+      <div class="skill-pill"><div class="skill-dot"></div>Python</div>
+      <div class="skill-pill"><div class="skill-dot"></div>Java</div>
+      <div class="skill-pill"><div class="skill-dot"></div>C / C++</div>
+      <div class="skill-pill"><div class="skill-dot"></div>HTML / CSS</div>
+      <div class="skill-pill"><div class="skill-dot"></div>SQL</div>
+      <div class="skill-pill"><div class="skill-dot"></div>Cybersecurity</div>
+      <div class="skill-pill"><div class="skill-dot"></div>AI / LLM APIs</div>
+      <div class="skill-pill"><div class="skill-dot"></div>AWS Cloud</div>
+      <div class="skill-pill"><div class="skill-dot"></div>IBM Cloud</div>
+      <div class="skill-pill"><div class="skill-dot"></div>Android Studio</div>
+      <div class="skill-pill"><div class="skill-dot"></div>KEIL / Proteus</div>
+      <div class="skill-pill"><div class="skill-dot"></div>Blockchain</div>
+      <div class="skill-pill"><div class="skill-dot"></div>IoT / Embedded</div>
+      <div class="skill-pill"><div class="skill-dot"></div>VLSI Design</div>
+      <div class="skill-pill"><div class="skill-dot"></div>Prompt Engineering</div>
+      <div class="skill-pill"><div class="skill-dot"></div>Technical Training</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container fade-in">
+    <div class="section-label">Projects</div>
+    <h2>Things I've Built</h2>
+    <p class="section-sub">Real-world applications combining AI, cybersecurity, and web development.</p>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <span class="project-tag tag-ai">AI</span>
+        <div class="project-title">Smart Meal Planner Assistant</div>
+        <p class="project-desc">AI-powered meal planning tool built on AWS PartyRock. Users get personalized meal plans based on their dietary preferences and goals.</p>
+        <a class="project-link" href="https://partyrock.aws/u/Darani/6NEjohoOS/Smart-Meal-Planner-Assistant" target="_blank">View Live →</a>
+      </div>
+
+      <div class="project-card">
+        <span class="project-tag tag-web">Web App</span>
+        <div class="project-title">Smart To-Do List</div>
+        <p class="project-desc">Feature-rich task management web app with date, time, and location features. Built and deployed live on Vercel.</p>
+        <a class="project-link" href="https://to-do-list-psi-two-69.vercel.app/" target="_blank">View Live →</a>
+      </div>
+
+      <div class="project-card">
+        <span class="project-tag tag-security">Blockchain</span>
+        <div class="project-title">Blockchain Certification Verifier</div>
+        <p class="project-desc">Capstone project at University of The People. A decentralized system to verify academic certificates using blockchain, eliminating fraud.</p>
+        <a class="project-link" href="#">Exhibited Dec 2025</a>
+      </div>
+
+      <div class="project-card">
+        <span class="project-tag tag-ai">AI / Agriculture</span>
+        <div class="project-title">Green Guard: Smart Pesticide System</div>
+        <p class="project-desc">Intelligent pesticide spraying solution using AI to optimize usage and reduce waste. Published in OALib Journal, May 2025.</p>
+        <a class="project-link" href="#">Published Research →</a>
+      </div>
+
+      <div class="project-card">
+        <span class="project-tag tag-research">Research</span>
+        <div class="project-title">Pipelined ML Accumulate Unit</div>
+        <p class="project-desc">Feed Forward Pipelined Accumulate Unit for Machine Learning, published in the International Journal of Scientific Research, Feb 2020.</p>
+        <a class="project-link" href="#">Published Paper →</a>
+      </div>
+
+      <div class="project-card">
+        <span class="project-tag tag-web">Android</span>
+        <div class="project-title">College Bus Tracking App</div>
+        <p class="project-desc">GPS-based Android application for real-time college bus tracking. Published in an international journal for engineering computations, 2018.</p>
+        <a class="project-link" href="#">Published Paper →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="container fade-in">
+    <div class="section-label">Certifications</div>
+    <h2>Credentials &amp; Achievements</h2>
+    <p class="section-sub">Industry-recognized certifications from Google, AWS, IBM, and more.</p>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-icon" style="background:rgba(79,142,247,0.1);">🔐</div>
+        <div><div class="cert-name">Google Cybersecurity Professional</div><div class="cert-date">April 2026</div></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon" style="background:rgba(56,217,169,0.1);">🤖</div>
+        <div><div class="cert-name">AI+ Foundation – AI CERTs</div><div class="cert-date">Aug 2025</div></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon" style="background:rgba(200,150,255,0.1);">🧠</div>
+        <div><div class="cert-name">Claude 101 by Anthropic</div><div class="cert-date">April 2026</div></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon" style="background:rgba(255,165,0,0.1);">☁️</div>
+        <div><div class="cert-name">AWS AI Practitioner – Udacity</div><div class="cert-date">April 2026</div></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon" style="background:rgba(79,142,247,0.1);">🐍</div>
+        <div><div class="cert-name">PCEP – Python Programmer (OpenEDG)</div><div class="cert-date">Mar 2024</div></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon" style="background:rgba(56,217,169,0.1);">☁️</div>
+        <div><div class="cert-name">Cloud Computing – IBM SkillsBuild</div><div class="cert-date">Dec 2025</div></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon" style="background:rgba(255,100,100,0.1);">💬</div>
+        <div><div class="cert-name">ChatGPT Prompt Engineering – DeepLearning.AI</div><div class="cert-date">Jan 2024</div></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon" style="background:rgba(79,142,247,0.1);">🐍</div>
+        <div><div class="cert-name">Python – LinkedIn Learning</div><div class="cert-date">Feb 2026</div></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon" style="background:rgba(200,150,255,0.1);">⚖️</div>
+        <div><div class="cert-name">Peer Review Excellence – IOP Publishing</div><div class="cert-date">Sep 2024</div></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon" style="background:rgba(255,165,0,0.1);">🏫</div>
+        <div><div class="cert-name">Effective Substitute Teacher Training</div><div class="cert-date">Dec 2025</div></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon" style="background:rgba(56,217,169,0.1);">🔬</div>
+        <div><div class="cert-name">TryEngineering STEM Grant Reviewer – IEEE</div><div class="cert-date">Nov 2024</div></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon" style="background:rgba(79,142,247,0.1);">🏆</div>
+        <div><div class="cert-name">Foundations of Cybersecurity – Google</div><div class="cert-date">Jan 2026</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container fade-in">
+    <div class="contact-box">
+      <div class="section-label" style="text-align:center;">Contact</div>
+      <h2>Let's Work Together</h2>
+      <p>I'm actively looking for IT roles in Apex / Raleigh, NC area.<br/>Open to hybrid or remote. Available immediately.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:daranikettimuthu20@gmail.com">
+          ✉️ daranikettimuthu20@gmail.com
+        </a>
+        <a class="contact-link" href="tel:3369559166">
+          📞 (336) 955-9166
+        </a>
+        <a class="contact-link" href="https://linkedin.com/in/daranikettimuthu" target="_blank">
+          💼 LinkedIn
+        </a>
+        <a class="contact-link" href="https://github.com/daranikettimuthu20" target="_blank">
+          🐙 GitHub
+        </a>
+        <a class="contact-link" href="DaraniKettimuthu_Resume.pdf" download>
+          📄 Download Resume
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    Built by Darani Kettimuthu — Apex, NC &nbsp;·&nbsp; Powered by Claude AI
+  </div>
+</footer>
+
+<!-- AI AGENT SCRIPT -->
+<script>
+const SYSTEM_PROMPT = `You are a professional AI hiring assistant representing Darani Kettimuthu. Answer recruiter and hiring manager questions about Darani in a confident, professional, and friendly tone. Always speak positively about Darani. Keep answers to 2-4 sentences. If asked something not in the profile, invite them to contact Darani at daranikettimuthu20@gmail.com or (336) 955-9166.
+
+DARANI'S PROFILE:
+- Location: Apex, NC 27539 | Available immediately for IT roles | Open to hybrid/remote
+- Email: daranikettimuthu20@gmail.com | Phone: (336) 955-9166
+
+EDUCATION:
+- MS MSIT – University of The People, Pasadena CA, Jan 2026
+- M.E. VLSI Designs – 9.2 CGPA – Nandha Engineering College, India, 2020
+- B.E. Electronics & Communications Engineering – 9.1 CGPA – 2018
+
+EXPERIENCE:
+- Placement Trainer, Nandha Engineering College (May 2018 – Feb 2021)
+  * Taught Python, Java, HTML, C, C++, SQL
+  * Conducted code reviews and unit testing
+  * Trained students in aptitude, communication, resume building, mock interviews
+
+TECHNICAL SKILLS: Python, Java, C, C++, HTML, SQL, Cybersecurity, AI/LLM APIs, AWS, IBM Cloud, Android Studio, KEIL, Proteus, Blockchain, Prompt Engineering
+
+KEY PROJECTS:
+- Smart Meal Planner using AWS PartyRock (live on partyrock.aws)
+- Smart To-Do List web app (live on Vercel)
+- Blockchain Certification Verification System (Capstone, Dec 2025)
+- Green Guard AI Pesticide System (published OALib Journal, May 2025)
+
+CERTIFICATIONS:
+- Google Cybersecurity Professional (April 2026)
+- AI+ Foundation – AI CERTs (Aug 2025)
+- Claude 101 by Anthropic (April 2026)
+- AWS AI Practitioner – Udacity (April 2026)
+- PCEP Python Programmer (Mar 2024)
+- IBM Cloud Computing Fundamentals (Dec 2025)
+- ChatGPT Prompt Engineering – DeepLearning.AI (Jan 2024)
+- Python – LinkedIn Learning (Feb 2026)
+- Foundations of Cybersecurity – Google (Jan 2026)
+
+VOLUNTEERING: IEEE Professional & Young Professionals, EAB EPICS Grant Reviewer, NCTSA Judge 2025, IEEE conference reviewer, IGI Global reviewer
+
+PUBLICATIONS: 10+ children's books on Amazon including "How AI Works: A Fun Guide for Kids" (June 2025)
+
+STRENGTHS: Strong cybersecurity foundation, practical AI deployment experience, 3 years technical teaching, high academic performance (9.1-9.2 CGPA), active IEEE community member, excellent communicator`;
+
+const history = [];
+
+function appendMsg(text, role) {
+  const div = document.createElement('div');
+  div.className = 'msg ' + role;
+  div.textContent = text;
+  document.getElementById('chat-messages').appendChild(div);
+  div.scrollIntoView({ behavior: 'smooth' });
+  return div;
+}
+
+async function sendMsg() {
+  const input = document.getElementById('chat-input');
+  const msg = input.value.trim();
+  if (!msg) return;
+  input.value = '';
+  appendMsg(msg, 'user');
+  document.getElementById('chips')?.remove();
+
+  const btn = document.getElementById('send-btn');
+  btn.disabled = true;
+  const thinking = appendMsg('Thinking...', 'bot thinking');
+  history.push({ role: 'user', content: msg });
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': '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',
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: SYSTEM_PROMPT,
+        messages: history
+      })
+    });
+    const data = await res.json();
+    const reply = data.content?.map(b => b.text || '').join('') || 'Sorry, something went wrong.';
+    history.push({ role: 'assistant', content: reply });
+    thinking.remove();
+    appendMsg(reply, 'bot');
+  } catch(e) {
+    thinking.remove();
+    appendMsg('Something went wrong. Please try again.', 'bot');
+  }
+  btn.disabled = false;
+}
+
+function sendChip(el) {
+  document.getElementById('chat-input').value = el.textContent;
+  sendMsg();
+}
+
+// Scroll fade-in
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
